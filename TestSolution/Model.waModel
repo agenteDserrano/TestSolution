@@ -1,2 +1,130 @@
-{    "toJSON": true,    "dbInfo": [{        "name": "Model",        "uuid": ""    }],    "extraProperties": {        "version": "1",        "classes": {        },        "model": {            "scriptMode": "manual"
-        }    },    "dataClasses": []}
+﻿{
+	"toJSON": true,
+	"extraProperties": {
+		"version": "2",
+		"classes": {
+			"Customer": {
+				"panelColor": "#fff",
+				"panel": {
+					"isOpen": "true",
+					"pathVisible": true,
+					"position": {
+						"X": 25,
+						"Y": 20
+					}
+				}
+			},
+			"Pet": {
+				"panelColor": "#996699",
+				"panel": {
+					"isOpen": "true",
+					"pathVisible": true,
+					"position": {
+						"X": 335,
+						"Y": 28
+					}
+				}
+			}
+		},
+		"model": {
+			"scriptMode": "manual",
+			"workspaceLeft": 0,
+			"workspaceTop": 0,
+			"lastScriptLocation": {
+				"Customer": {
+					"computed": "Customer/Customer-events.js"
+				}
+			}
+		}
+	},
+	"dataClasses": [
+		{
+			"name": "Customer",
+			"className": "Customer",
+			"collectionName": "Customers",
+			"scope": "public",
+			"attributes": [
+				{
+					"name": "ID",
+					"kind": "storage",
+					"scope": "public",
+					"unique": true,
+					"autosequence": true,
+					"type": "long",
+					"primKey": true
+				},
+				{
+					"name": "firstName",
+					"kind": "storage",
+					"scope": "public",
+					"type": "string",
+					"matchColumn": "name"
+				},
+				{
+					"name": "lastName",
+					"kind": "storage",
+					"scope": "public",
+					"type": "string"
+				},
+				{
+					"name": "pets",
+					"kind": "relatedEntities",
+					"scope": "public",
+					"type": "Pets",
+					"reversePath": true,
+					"path": "owner"
+				},
+				{
+					"name": "fullName",
+					"kind": "calculated",
+					"scope": "public",
+					"type": "string",
+					"scriptKind": "javascript",
+					"onGet": [
+						{
+							"from": "$mainModel.Customer.fullName.onGet",
+							"userDefined": true
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Pet",
+			"className": "Pet",
+			"collectionName": "Pets",
+			"scope": "public",
+			"attributes": [
+				{
+					"name": "ID",
+					"kind": "storage",
+					"scope": "public",
+					"unique": true,
+					"autosequence": true,
+					"type": "long",
+					"primKey": true
+				},
+				{
+					"name": "name",
+					"kind": "storage",
+					"scope": "public",
+					"type": "string"
+				},
+				{
+					"name": "age",
+					"kind": "storage",
+					"scope": "public",
+					"type": "number"
+				},
+				{
+					"name": "owner",
+					"kind": "relatedEntity",
+					"scope": "public",
+					"type": "Customer",
+					"path": "Customer"
+				}
+			]
+		}
+	],
+	"type": []
+}
